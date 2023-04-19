@@ -17,7 +17,7 @@ export default function Modal({ src, alt, onClose }) {
     return () => {
       window.removeEventListener('keydown', handleKeydown);
     };
-  }, []);
+  }, [onClose]);
 
   const handleOverlayClick = e => {
     if (e.target === e.currentTarget) {
@@ -28,7 +28,7 @@ export default function Modal({ src, alt, onClose }) {
   return createPortal(
     <div className={css.overlay} onClick={handleOverlayClick}>
       <div className={css.modal}>
-        <img src={src} alt={alt} width="1280" />
+        <img src={src} alt={alt} width="1080" />
       </div>
     </div>,
     modalRoot

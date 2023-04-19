@@ -20,32 +20,31 @@ export function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData();
-  }, [searchQuery, page]);
-
-  async function fetchData() {
-    if (!searchQuery) {
-      return;
-    }
-    setLoading(true);
-    try {
-      const data = await apiService(searchQuery, page);
-      setTotalImages(data.totalHits);
-      if (data.totalHits === 0) {
-        setImages([]);
-        toast.info(
-          `Sorry, there are no images with ${searchQuery}. Please try again.`
-        );
+    async function fetchData() {
+      if (!searchQuery) {
         return;
       }
-      setImages([...images, ...data.hits]);
-    } catch (error) {
-      setError(error);
-      toast.error('Sorry, an error occurred. Please try again.');
-    } finally {
-      setLoading(false);
+      setLoading(true);
+      try {
+        const data = await apiService(searchQuery, page);
+        setTotalImages(data.totalHits);
+        if (data.totalHits === 0) {
+          setImages([]);
+          toast.info(
+            `Sorry, there are no images with ${searchQuery}. Please try again.`
+          );
+          return;
+        }
+        setImages(images => [...images, ...data.hits]);
+      } catch (error) {
+        setError(error);
+        toast.error('Sorry, an error occurred. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
-  }
+    fetchData();
+  }, [searchQuery, page]);
 
   const toggleModal = e => {
     setShowModal(!showModal);

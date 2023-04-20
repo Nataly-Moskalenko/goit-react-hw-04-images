@@ -1,10 +1,10 @@
-import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import Modal from './Modal/Modal';
-import Loader from './Loader/Loader';
-import Button from './Button/Button';
-import StartImage from './StartImage/StartImage';
-import ErrorImage from './ErrorImage/ErrorImage';
+import Searchbar from './searchbar/Searchbar';
+import ImageGallery from './imageGallery/ImageGallery';
+import Modal from './modal/Modal';
+import Loader from './loader/Loader';
+import Button from './button/Button';
+import StartImage from './startImage/StartImage';
+import ErrorImage from './errorImage/ErrorImage';
 import apiService from 'services/apiService';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';

@@ -1,4 +1,4 @@
-import image from '../../images/error.jpg';
+import image from '../images/error.jpg';
 import css from './ErrorImage.module.css';
 
 export default function ErrorImage() {

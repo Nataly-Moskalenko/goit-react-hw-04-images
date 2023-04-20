@@ -1,4 +1,4 @@
-import image from '../../images/start.jpg';
+import image from '../images/start.jpg';
 import css from './StartImage.module.css';
 
 export default function StartImage() {

@@ -1,0 +1,10 @@
+.start__image {
+  margin: 0 auto;  
+}
+
+.start__description {
+  text-align: center;
+  color: #3f51b5;
+  font-size: 30px;
+  font-weight: 700;
+}

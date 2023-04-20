@@ -3,6 +3,8 @@ import ImageGallery from './imageGallery/ImageGallery';
 import Modal from './modal/Modal';
 import Loader from './loader/Loader';
 import Button from './button/Button';
+import StartImage from './startImage/StartImage';
+import ErrorImage from './errorImage/ErrorImage';
 import apiService from 'services/apiService';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,18 +20,24 @@ export function App() {
   const [totalImages, setTotalImages] = useState(0);
   const [showImage, setShowImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [startImage, setStartImage] = useState(true);
+  const [errorImage, setErrorImage] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       if (!searchQuery) {
+        setStartImage(true);
         return;
       }
       setLoading(true);
+      setStartImage(false);
+      setErrorImage(false);
       try {
         const data = await apiService(searchQuery, page);
         setTotalImages(data.totalHits);
         if (data.totalHits === 0) {
           setImages([]);
+          setErrorImage(true);
           toast.info(
             `Sorry, there are no images with ${searchQuery}. Please try again.`
           );
@@ -59,7 +67,9 @@ export function App() {
       setPage(1);
       setImages([]);
     } else {
-      toast.info(`We already found images with ${query}.`);
+      if (searchQuery === query && images.length > 0) {
+        toast.info(`We already found images with ${query}.`);
+      }
     }
   };
 
@@ -68,6 +78,8 @@ export function App() {
   return (
     <div className={css.app}>
       <Searchbar onSubmit={handleSearchbarSubmit} />
+      {startImage && <StartImage />}
+      {(error || errorImage) && <ErrorImage />}
       {images && <ImageGallery images={images} onClick={toggleModal} />}
       {showModal && showImage && (
         <Modal

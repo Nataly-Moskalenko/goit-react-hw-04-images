@@ -1,4 +1,4 @@
-import ImageGalleryItem from 'components/imageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from './ImageGallery.module.css';
 import PropTypes from 'prop-types';
 

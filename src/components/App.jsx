@@ -25,8 +25,7 @@ export function App() {
 
   useEffect(() => {
     async function fetchData() {
-      if (!searchQuery) {
-        setStartImage(true);
+      if (!searchQuery) {      
         return;
       }
       setLoading(true);
